@@ -33,8 +33,6 @@ void load_matrix (Matrix_t* m, unsigned int* data);
 bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int rows,
 						const unsigned int cols) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
-
 	if(new_matrix == NULL){
 		printf("Passed in matrix was not initialized correctly.\n");
 		return false; 
@@ -76,8 +74,6 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 	*/
 
 void destroy_matrix (Matrix_t** m) {
-
-	//TODO ERROR CHECK INCOMING PARAMETERS
 	
 	if(!m)
 		return; 
@@ -87,10 +83,6 @@ void destroy_matrix (Matrix_t** m) {
 	*m = NULL;
 }
 
-
-	
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function will determine if two matrices are equal or not.  
 		INPUTS: The inputs are a -> matrix one and b -> matrix two
@@ -98,8 +90,6 @@ void destroy_matrix (Matrix_t** m) {
 	*/
 
 bool equal_matrices (Matrix_t* a, Matrix_t* b) {
-
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if (!a || !b || !a->data || !b->data) {
 		return false;	
@@ -120,9 +110,6 @@ bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 
 bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
-
-	//TODO ERROR CHECK INCOMING PARAMETERS
-
 	if(!dest)
 		return false; 
 
@@ -137,8 +124,6 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 	return equal_matrices (src,dest);
 }
 
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function will iterate over a matrixes content and for each index in the matrix, its value is shifted to the left or right by a certain amount, decided by the user.
 		INPUTS: The input are: a -> the matrix to be iterated over and have values adjusted
@@ -149,7 +134,6 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
 bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 	if (!a) {
 		return false;
 	}
@@ -183,8 +167,6 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function takes two matrices and adds them together and stores the result in a 3rd pre-allocated matrix. 
 		INPUTS: The input are: a -> one of the two matrices to have its content added with the second matrix and stored in the 3rd matrix
@@ -194,8 +176,6 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	*/
 
 bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
-
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(!a || !b || !c)
 		return false; 
@@ -215,8 +195,6 @@ bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function takes a matrix and outputs it to the screen for the user to see. 
 		INPUTS: The inputs are: m -> the matrix to be iterated over and have its contents displayed to the user
@@ -224,8 +202,6 @@ bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 	*/
 
 void display_matrix (Matrix_t* m) {
-	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(!m)
 		return; 
@@ -242,8 +218,6 @@ void display_matrix (Matrix_t* m) {
 
 }
 
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function is nearly the opposite of the write_matrix function, it will open up a file and read the matrix from it into a matrix in the program, the matrix read from the file
 			is stored in binary format. 
@@ -254,7 +228,6 @@ void display_matrix (Matrix_t* m) {
 
 bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 	if(strlen(matrix_input_filename) == 0)
 		return false; 
 
@@ -388,8 +361,6 @@ bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function will open up a file and write out the matrix to it, in binary. 
 		INPUTS: The inputs of the function are: matrix_output_filename -> which is the filename of the file that will have the binary-written matrix saved in
@@ -398,8 +369,6 @@ bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	*/
 
 bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
-	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(strlen(matrix_output_filename) == 0)
 		return false;
@@ -470,8 +439,6 @@ bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT -- parameter checking is done
-
 	/*
 		PURPOSE: The purpose of this function is to iterate over each of the fields in the matrix, and generate a random value for it. It also checks to make sure that the start and end range make sense
 			e.g. start range is less than end range, otherwise, the values are flipped and the function is re-called. 
@@ -505,8 +472,6 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
 }
 
 /*Protected Functions in C*/
-
-	//TODO FUNCTION COMMENT
 	
 	/*
 		PURPOSE: This function will "load" a matrix into memory, meaning that it will take an initialized matrix, one that is set to all 0's and fill it with data, that is read in or generated at runtime. 
@@ -515,8 +480,6 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
 	*/
 
 void load_matrix (Matrix_t* m, unsigned int* data) {
-	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(!m)
 		return; 
@@ -527,8 +490,6 @@ void load_matrix (Matrix_t* m, unsigned int* data) {
 	memcpy(m->data,data,m->rows * m->cols * sizeof(unsigned int));
 }
 
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function will take a passed in matrix and append to the end of the array that is holding or keeping track of all the matrices created (but not deleted) during runtime of the program
 		INPUTS: The inputs are: mats -> the array container for the matrices created (but not deleted) during runtime of the program. new_matrix -> the matrix to be added to the array. num_mats -> total
@@ -537,8 +498,6 @@ void load_matrix (Matrix_t* m, unsigned int* data) {
 	*/
 
 unsigned int add_matrix_to_array (Matrix_t** mats, Matrix_t* new_matrix, unsigned int num_mats) {
-	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(!mats)
 		return - 1; 
@@ -556,8 +515,6 @@ unsigned int add_matrix_to_array (Matrix_t** mats, Matrix_t* new_matrix, unsigne
 	} 
 	mats[pos] = new_matrix;
 	current_position++;
-
-	printf("POS is: %ld\n", pos);
 
 	return pos;
 }

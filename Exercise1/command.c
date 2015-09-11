@@ -8,9 +8,6 @@
 #define MAX_CMD_COUNT 50
 #define MAX_CMD_LEN 25
 
-
-	//TODO FUNCTION COMMENT
-
 	/*
 		PURPOSE: This function takes in the user input, and parses it out into an array of commands to be executed by the program. 
 		INPUTS: It takes in an input string, that is the command, such as 'create test 4 4' and a cmd structure pointer that holds a num_cmds variable
@@ -51,8 +48,6 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 	free(string);
 	return true;
 }
-
-	//TODO FUNCTION COMMENT
 
 	/*
 		PURPOSE: This function destroys all commands currently present inside of the cmd structure, so it can be resued again for another command

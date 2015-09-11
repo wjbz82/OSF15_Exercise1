@@ -15,10 +15,7 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats);
 unsigned int find_matrix_given_name (Matrix_t** mats, unsigned int num_mats, 
 			const char* target);
 
-// TODO complete the defintion of this function. 
 void destroy_remaining_heap_allocations(Matrix_t **mats, unsigned int num_mats);
-
-	//TODO FUNCTION COMMENT
 
 	/*
 		PURPOSE: This function is the main driver of the entire program, it feeds every other aspect of the program. Meaning it reads in the users' input
@@ -38,7 +35,7 @@ int main (int argc, char **argv) {
 	memset(&mats,0, sizeof(Matrix_t*) * 10); // IMPORTANT C FUNCTION TO LEARN
 
 	Matrix_t *temp = NULL;
-	bool create_result = create_matrix (&temp,"temp_mat", 5, 5); // TODO ERROR CHECK
+	bool create_result = create_matrix (&temp,"temp_mat", 5, 5);
 	if(create_result == false){
 		printf("Failed to create the matrix.\n");
 		return -1; 
@@ -47,7 +44,7 @@ int main (int argc, char **argv) {
 	if(temp == NULL)
 		return -1;
 
-	int result = add_matrix_to_array(mats,temp, 10); //TODO ERROR CHECK NEEDED
+	int result = add_matrix_to_array(mats,temp, 10);
 	if(result < 0 || result > 9){
 		printf("Failed to add matrix to array.\n");
 		return -1; 
@@ -62,8 +59,8 @@ int main (int argc, char **argv) {
 		perror("PROGRAM FAILED TO INIT\n");
 		return -1;
 	}
-	random_matrix(mats[mat_idx], 15, 11);
-	bool write_success = write_matrix("temp_mat", mats[mat_idx]); // TODO ERROR CHECK
+	random_matrix(mats[mat_idx], 1, 10);
+	bool write_success = write_matrix("temp_mat", mats[mat_idx]);
 
 	if(write_success == false){
 		printf("Failed to write matrix out to file.\n");
@@ -100,7 +97,6 @@ int main (int argc, char **argv) {
 			can be ran, and if so, it runs them and leaves the function, otherwise it does nothing. 
 	*/
 void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(cmd == NULL){
 		printf("Command container was null.\n");
@@ -143,7 +139,7 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 					return;
 				}
 			
-				int add_result = add_matrix_to_array(mats,c, num_mats); //TODO ERROR CHECK NEEDED
+				int add_result = add_matrix_to_array(mats,c, num_mats);
 					if(add_result < 0 || add_result > 9){
 						printf("Failed to add matrix to array.\n");
 					return; 
@@ -164,14 +160,14 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 						mats[mat1_idx]->cols)) {
 					return;
 				}
-				bool duplicate_result = duplicate_matrix (mats[mat1_idx], dup_mat); //TODO ERROR CHECK NEEDED
+				bool duplicate_result = duplicate_matrix (mats[mat1_idx], dup_mat);
 				
 				if(duplicate_result == false){
 					printf("Failed to duplicate the matrix.\n");
 					return; 
 				}
 
-				int duplicate_add_result = add_matrix_to_array(mats,dup_mat,num_mats); //TODO ERROR CHECK NEEDED
+				int duplicate_add_result = add_matrix_to_array(mats,dup_mat,num_mats);
 				
 				if(duplicate_add_result < 0 || duplicate_add_result > 9){
 					printf("Failed to add the matrix to the array.\n");
@@ -206,7 +202,7 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 		int mat1_idx = find_matrix_given_name(mats,num_mats,cmd->cmds[1]);
 		const int shift_value = atoi(cmd->cmds[3]);
 		if (mat1_idx >= 0 ) {
-			bool shift_result = bitwise_shift_matrix(mats[mat1_idx],cmd->cmds[2][0], shift_value); //TODO ERROR CHECK NEEDED
+			bool shift_result = bitwise_shift_matrix(mats[mat1_idx],cmd->cmds[2][0], shift_value);
 			
 			if(shift_result == true){
 				printf("Failed to shift the matrix.\n");
@@ -228,7 +224,7 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 			return;
 		}	
 		
-		int result_add = add_matrix_to_array(mats,new_matrix, num_mats); //TODO ERROR CHECK NEEDED
+		int result_add = add_matrix_to_array(mats,new_matrix, num_mats);
 			
 		if(result_add < 0 || result_add > 9){
 			printf("Failed to add the matrix to the array.\n");
@@ -252,11 +248,11 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 		const unsigned int rows = atoi(cmd->cmds[2]);
 		const unsigned int cols = atoi(cmd->cmds[3]);
 
-		bool create_result = create_matrix(&new_mat,cmd->cmds[1],rows, cols); //TODO ERROR CHECK NEEDED
+		bool create_result = create_matrix(&new_mat,cmd->cmds[1],rows, cols);
 		if(create_result == false){
 			return; 
 		}
-		int add_result_final = add_matrix_to_array(mats,new_mat,num_mats); // TODO ERROR CHECK NEEDED
+		int add_result_final = add_matrix_to_array(mats,new_mat,num_mats);
 		if(add_result_final > 9 || add_result_final < 0){
 			return; 
 		}
@@ -267,7 +263,7 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 		int mat1_idx = find_matrix_given_name(mats,num_mats,cmd->cmds[1]);
 		const unsigned int start_range = atoi(cmd->cmds[2]);
 		const unsigned int end_range = atoi(cmd->cmds[3]);
-		bool random_result = random_matrix(mats[mat1_idx],start_range, end_range); //TODO ERROR CHECK NEEDED
+		bool random_result = random_matrix(mats[mat1_idx],start_range, end_range);
 		if(random_result == false)
 			return; 
 		printf("Matrix (%s) is randomized between %u %u\n", mats[mat1_idx]->name, start_range, end_range);
@@ -287,7 +283,6 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 	*/
 
 unsigned int find_matrix_given_name (Matrix_t** mats, unsigned int num_mats, const char* target) {
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(mats == NULL){
 		printf("Matrix array is null, returning.\n");
@@ -319,8 +314,6 @@ unsigned int find_matrix_given_name (Matrix_t** mats, unsigned int num_mats, con
 	*/
 
 void destroy_remaining_heap_allocations(Matrix_t **mats, unsigned int num_mats) {
-	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	if(!mats)
 		return; 
@@ -328,5 +321,9 @@ void destroy_remaining_heap_allocations(Matrix_t **mats, unsigned int num_mats) 
 	if(num_mats <= 0)
 		return; 
 
-	// COMPLETE MISSING MEMORY CLEARING HERE
+	for(int i = 0; i < num_mats; i++){
+		if(mats[i] != NULL)
+			free(mats[i]->data);
+			free(mats[i]);
+	}
 }
